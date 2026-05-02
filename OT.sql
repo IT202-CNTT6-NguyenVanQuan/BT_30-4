@@ -66,10 +66,28 @@ INSERT INTO bookings (showtime_id, customer_name, phone) VALUES
 (1, 'Nguyễn Văn Nam', '0912345678'),
 (1, 'Trần Thị Hương', '0987654321'),
 (2, 'Lê Đình Bảo', '0901112223'),
-(2, 'Phạm Thu Trà', '0902223334'),
+(2, 'Phạm Thu Trà', '0987654321'),
 (3, 'Hoàng Minh Tuấn', '0903334445'),
 (3, 'Vũ Thị Thanh', '0904445556'),
 (4, 'Đặng Khắc Việt', '0905556667'),
 (4, 'Bùi Lan Ngọc', '0906667778'),
 (5, 'Đỗ Thái Sơn', '0907778889'),
 (5, 'Hồ Tú Anh', '0908889990');
+
+-- Phòng chiếu số 1 bị hỏng điều hòa, chuyển sang trạng thái bảo trì
+UPDATE rooms 
+SET status = 'maintenance' 
+WHERE id = 1;
+
+-- Chuyển toàn bộ lịch chiếu từ phòng 1 sang phòng 2
+UPDATE showtimes 
+SET room_id = 2 
+WHERE room_id = 1;
+
+
+DELETE FROM bookings 
+WHERE phone = '0987654321';
+
+
+DELETE FROM movies 
+WHERE id = 3;
